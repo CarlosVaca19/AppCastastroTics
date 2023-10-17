@@ -17,11 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from myCatastroAPP.views import login_view
-
 urlpatterns = [
     path('admin/', admin.site.urls),
 #path('', index_principalF, name='inicio'), #permite lanzar el index principal
     path('', include(('myCatastroAPP.urls', 'login'), namespace='login'), name='login'),
+    path('/', include(('myCatastroAPP.urls', 'panel'), namespace='panel'), name='panel'),
     #path('', login_view, name='login'),
 ]
