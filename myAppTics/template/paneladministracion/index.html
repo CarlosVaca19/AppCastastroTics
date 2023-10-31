@@ -76,7 +76,9 @@
                     <li class="active">
                         <a href="index.html"><i class="menu-icon fa fa-laptop"></i>Inicio </a>
                     </li>
-
+                    <li class="">
+                        <a href="{% url 'panel:index_funcionarios' %}"><i class="menu-icon fa fa-laptop"></i>Funcionarios Registrados </a>
+                    </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
@@ -183,16 +185,43 @@
             </div>
         </header>
         <!-- /#header -->
+
+
+<div class="breadcrumbs">
+            <div class="breadcrumbs-inner">
+                <div class="row m-0">
+                    <div class="col-sm-4">
+                        <div class="page-header float-left">
+                            <div class="page-title">
+                                <h1>
+                                    {% block titulo %}    {% endblock %}
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="page-header float-right">
+                            <div class="page-title">
+                                <ol class="breadcrumb text-right">
+                                    <li><a href="#">Dashboard</a></li>
+                                    <li><a href="#">Table</a></li>
+                                    <li class="active">Data table</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
         <!-- Content -->
         <div class="content">
             <!-- Animated -->
             <div class="animated fadeIn">
-                <!-- Widgets  -->
 
-                <!-- /Widgets -->
-                <!--  Traffic  -->
+                {% block contenido_dinamico %}  {% endblock %}
 
-                <!--  /Traffic -->
                 <div class="clearfix"></div>
                 <!-- Orders -->
 

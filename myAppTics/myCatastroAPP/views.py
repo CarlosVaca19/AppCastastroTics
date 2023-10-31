@@ -1,3 +1,5 @@
+import json, urllib.request
+
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 from django.http import JsonResponse
@@ -26,3 +28,17 @@ def index_view(request):
     #productos = presentacion.objects.all()[:5]
     return render(request, 'paneladministracion/index.html',
                   {})
+
+
+def index_funcionarios(request):
+    url = 'http://localhost:8080/sw/webresources/swRecursoAme/servcios_empleados/' #url del servicio web
+    response = urllib.request.urlopen(url)
+
+    data = json.load(response)
+
+    #inst = ConfiguracionIndex.objects.get(pk=1)
+    #noti = noticias_index.objects.all()
+    #orga = organizaciones.objects.all()
+    #productos = presentacion.objects.all()[:5]
+    return render(request, 'funcionarios/index.html',
+                  {'titulo':'FUNCIONARIOS', 'json':data} )
