@@ -40,10 +40,13 @@ def index_funcionarios(request):
     data ={}
     data['usuarips']=[]
 
-    url = 'http://localhost:8080/sw/webresources/swRecursoAme/servcios_empleados/'  # url del servicio web
-    response = urllib.request.urlopen(url)
-    data = json.load(response)
-    tam = len(data)
+    try:
+        url = 'http://localhost:8080/sw/webresources/swRecursoAme/servcios_empleados/'  # url del servicio web
+        response = urllib.request.urlopen(url)
+        data = json.load(response)
+    finally:
+        tam = len(data)
+
     return render(request, 'funcionarios/index.html',
                   {'titulo':'Funcionarios del Gadma', 'json':data, 'tamano':tam})
 
