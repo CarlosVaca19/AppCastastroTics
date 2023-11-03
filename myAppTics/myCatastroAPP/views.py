@@ -5,6 +5,10 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 
+from myCatastroAPP.models import funcionarios_gadma
+
+
+#from django.utils import simplejson
 
 # Create your views here.
 def login_view(request):
@@ -31,14 +35,18 @@ def index_view(request):
 
 
 def index_funcionarios(request):
-    url = 'http://localhost:8080/sw/webresources/swRecursoAme/servcios_empleados/' #url del servicio web
+
+    #consultar servicio
+    data ={}
+    data['usuarips']=[]
+    url = 'http://localhost:8080/sw/webresources/swRecursoAme/servcios_empleados/'  # url del servicio web
     response = urllib.request.urlopen(url)
-
     data = json.load(response)
-
-    #inst = ConfiguracionIndex.objects.get(pk=1)
-    #noti = noticias_index.objects.all()
-    #orga = organizaciones.objects.all()
-    #productos = presentacion.objects.all()[:5]
+    tam = len(data)
     return render(request, 'funcionarios/index.html',
-                  {'titulo':'FUNCIONARIOS', 'json':data} )
+                  {'titulo':'Funcionarios del Gadma', 'json':data, 'tamano':tam})
+
+def actualizar_funcionarios_sw(request):
+    funcionarios = funcionarios_gadma.objects.all()
+    return render(request, 'funcionarios/index.html',
+                  {'titulo':'FUNCIONARIOS', 'json':funcionarios, 'tamano':len(funcionarios)})
