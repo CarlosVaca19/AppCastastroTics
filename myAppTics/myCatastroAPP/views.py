@@ -39,6 +39,7 @@ def index_funcionarios(request):
     #consultar servicio
     data ={}
     data['usuarips']=[]
+
     url = 'http://localhost:8080/sw/webresources/swRecursoAme/servcios_empleados/'  # url del servicio web
     response = urllib.request.urlopen(url)
     data = json.load(response)
