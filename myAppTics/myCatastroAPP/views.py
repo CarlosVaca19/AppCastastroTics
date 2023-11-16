@@ -50,6 +50,25 @@ def index_funcionarios(request):
     return render(request, 'funcionarios/index.html',
                   {'titulo':'Funcionarios del Gadma', 'json':data, 'tamano':tam})
 
+
+
+def index_asignaciones(request, id_funcionario):
+    #http://localhost:8080/sw/webresources/swRecursoAme/equiposasignadosfuncionarios/?cedu=1311326605
+    #consultar servicio
+    data ={}
+    data['usuarios']=[]
+
+    try:
+        url = 'http://localhost:8080/sw/webresources/swRecursoAme/equiposasignadosfuncionarios/?cedu='+id_funcionario  # url del servicio web
+        response = urllib.request.urlopen(url)
+        data = json.load(response)
+    finally:
+        tam = len(data)
+
+    return render(request, 'funcionarios/asignaciones_funcionarios.html',
+                  {'titulo':'Asignaciones al Funcionario', 'json':data, 'tamano':tam})
+
+
 def actualizar_funcionarios_sw(request):
     funcionarios = funcionarios_gadma.objects.all()
     return render(request, 'funcionarios/index.html',
