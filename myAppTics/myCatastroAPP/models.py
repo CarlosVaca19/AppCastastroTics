@@ -33,3 +33,14 @@ class ficha_mantenimiento(models.Model):
     act_fi_asignado = models.CharField(verbose_name="act_fi_asignado", null=True, max_length=70)
     act_fi_factura = models.CharField(verbose_name="act_fi_factura", null=True, max_length=70)
 
+class historial_mantenimiento(models.Model):
+    opciones = (
+        ('Preventivo', 'Preventivo'),
+        ('Correctivo', 'Correctivo'),
+        ('Dardebaja', 'Dardebaja'),
+    )
+    id_ficha_mantenimiento = models.ForeignKey('ficha_mantenimiento', on_delete=models.CASCADE, verbose_name="ficha_mantenimiento")
+    tipo_mantenimiento = models.CharField(verbose_name="Tipo Mantenimiento", choices=opciones,max_length=20,null=True)
+    observaciones = models.CharField(verbose_name="observaciones", null=True, max_length=300)
+    fecha_mantenimiento = models.DateField(verbose_name="Fecha Solicitud",null=True)
+    funcionario_encargado = models.CharField(verbose_name="Funcionario", null=True, max_length=70)

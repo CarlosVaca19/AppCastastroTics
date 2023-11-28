@@ -9,7 +9,12 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                <strong class="card-title">Historial de Mantenimiento: {{nombre_equipo}}</strong>
+                <strong class="card-title">Historial de Mantenimiento: {{ficha.act_fi_nombre}}</strong>
+                <br>
+                <a CLASS="btn btn btn-success" href="{% url 'panel:nuevo_mantenimiento' ficha.id %}" title="Mantenimiento">
+                    <span class="ti-receipt"> Nuevo </span></a>
+                 <a CLASS="btn btn btn-success" href="" title="Mantenimiento">
+                    <span class="ti-receipt"> Pdf </span></a>
 
             </div>
             <div class="card-body">
@@ -17,26 +22,25 @@
                     <thead>
                     <tr>
                         <th>Ord.</th>
-                        <th>Cuenta</th>
-                        <th>Serie</th>
-                        <th>Detalle</th>
-                        <th>Color</th>
-                        <th>Condicion</th>
+                        <th>Tipo Mantenimiento</th>
+                        <th>Observaciones</th>
+                        <th>Fecha</th>
+                        <th>Funcionario</th>
                         <th>Opciones</th>
                     </tr>
                     </thead>
                     <tbody>
+
                     {% if json %}
-                    {% for act in json %}
+                    {% for mt in json %}
                     <tr role="row" class="odd">
                         <td class="sorting_1">{{ forloop.counter }}</td>
-                        <td>{{ act.cta_co_codigo }}</td>
-                        <td>{{ act.act_fi_serie }}</td>
-                        <td>{{ act.act_fi_nombre }}</td>
-                        <td>{{ act.act_fi_color}}</td>
-                        <td>{{ act.act_fi_condicion }}</td>
+                        <td>{{ mt.tipo_mantenimiento }}</td>
+                        <td>{{ mt.observaciones }}</td>
+                        <td>{{ mt.fecha_mantenimiento }}</td>
+                        <td>{{ mt.funcionario_encargado}}</td>
                         <td>
-                            <a CLASS="btn btn btn-success" href="{% url 'panel:equipo_ficha' act.act_fi_identificador %}" title="Generar Mantenimiento"><span class="ti-receipt"></span></a>
+                            <a CLASS="btn btn btn-success" href="" title=""><span class="ti-receipt">pdf</span></a>
                             <!--<a class="btn btn-danger" href=""></a>-->
                             <!--<a class="btn btn btn-success" href=""></a>-->
                         </td>

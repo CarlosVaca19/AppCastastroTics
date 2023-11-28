@@ -6,7 +6,7 @@ from django.http import JsonResponse
 from django.shortcuts import render, redirect
 
 from .forms import FichaMantenimiento
-from .models import ficha_mantenimiento, funcionarios_gadma
+from .models import ficha_mantenimiento, funcionarios_gadma, historial_mantenimiento
 
 
 # from django.utils import simplejson
@@ -80,7 +80,7 @@ def generar_ficha(request, id_equipomantenimiento):
     # consultar servicio
     data = {}
     data['equipo'] = []
-
+    bandera = "NO"
     try:
         url = 'http://localhost:8080/sw/webresources/swRecursoAme/identificadorporequipo/?id=' + id_equipomantenimiento  # url del servicio web
         response = urllib.request.urlopen(url)
@@ -88,6 +88,7 @@ def generar_ficha(request, id_equipomantenimiento):
     finally:
         tam = len(data)
     mensaje = 'ingresar'
+
     if request.method == 'POST':
         ficha = ficha_mantenimiento(
             det_asig_numero=request.POST.get("det_asig_numero"),
@@ -115,5 +116,46 @@ def generar_ficha(request, id_equipomantenimiento):
                       {'titulo': 'Ficha Equipo', 'json': data, 'tamano': tam, 'sms': mensaje})
     else:
         form = FichaMantenimiento()
+        #fmant = ficha_mantenimiento.objects.get(act_fi_identificador=id_equipomantenimiento)
+        fmant = ficha_mantenimiento.objects.all().filter(act_fi_identificador=id_equipomantenimiento)
+        if len(fmant) > 0:
+            bandera = "SI"
+            for ficha_nueva in fmant:
+                id_ficha = ficha_nueva.id
+                nombre_ficha = ficha_nueva.act_fi_nombre
+
         return render(request, 'equipoinformatico/fichamantenimiento.html',
-                      {'titulo': 'Ficha Equipo', 'json': data, 'tamano': tam, 'form': form})
+                      {'titulo': 'Ficha Equipo', 'json': data, 'tamano': tam, 'form': form, 'bandera':bandera,
+                       'id_ficha':id_ficha})
+
+
+def index_historial_mantenimiento(request, id_ficha_mantenimiento):
+    historial_mantenimiento1 = historial_mantenimiento.objects.all().filter(id_ficha_mantenimiento=id_ficha_mantenimiento)
+    inst_mantenimiento = ficha_mantenimiento.objects.get(pk=id_ficha_mantenimiento)
+    return render(request, 'equipoinformatico/fichagenerada.html',
+                  {'titulo': 'Hisorial de Mantenimiento', 'json': historial_mantenimiento1, 'ficha':inst_mantenimiento})
+
+
+def generarmantenimiento(request, id_ficha_mantenimiento):
+    inst_mantenimiento = ficha_mantenimiento.objects.get(pk=id_ficha_mantenimiento)
+
+    if request.method == 'POST':
+        form = historial_mantenimiento(request.POST)
+
+        ficha = historial_mantenimiento(
+            id_ficha_mantenimiento = inst_mantenimiento,
+            tipo_mantenimiento= request.POST.get("tipo_mantenimiento"),
+            observaciones=request.POST.get("observaciones"),
+            fecha_mantenimiento = request.POST.get("fecha_mantenimiento"),
+            funcionario_encargado = request.POST.get("funcionario_encargado")
+        )
+        ficha.save()
+        return redirect('panel:historial_mantenimiento', id_ficha_mantenimiento)
+    else:
+        form = historial_mantenimiento()
+        contexto = {'message': 'Guardado con Exito',
+                'form': form,
+                'ficha': inst_mantenimiento,
+                'titulo': "Nuevo Mantenimiento"
+                }
+    return render(request, 'equipoinformatico/nuevomantenimiento.html', contexto)
