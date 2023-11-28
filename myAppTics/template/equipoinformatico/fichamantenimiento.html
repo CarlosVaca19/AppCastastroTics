@@ -11,7 +11,7 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                <strong class="card-title">Asignaciones</strong>
+                <strong class="card-title">Generar Ficha de Mantenimiento Equipo Informatico</strong>
             </div>
             <div class="card-body">
                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
@@ -37,7 +37,11 @@
                         <td>{{ act.act_fi_color}}</td>
                         <td>{{ act.act_fi_condicion }}</td>
                         <td>
-                            <a CLASS="btn btn btn-success" href="{% url 'panel:equipo_ficha' act.act_fi_identificador %}" title="Generar Mantenimiento"><span class="ti-receipt"></span></a>
+
+                             <form id="myForm" style="width:90%; margin-left:5%;" action="{% url 'panel:equipo_ficha' act.act_fi_identificador %}" method="post">
+                              {% csrf_token %}
+                              <button type="submit" CLASS="btn btn btn-success"><span class="ti-receipt"></span></button>
+                             </form>
                             <!--<a class="btn btn-danger" href=""></a>-->
                             <!--<a class="btn btn btn-success" href=""></a>-->
                         </td>
@@ -56,7 +60,6 @@
 </div>
 {% endblock %}
 {% block adicionales %}
-
 <script type="text/javascript">
     $(document).ready(function() {
       $('#bootstrap-data-table-export').DataTable();
