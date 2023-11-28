@@ -8,55 +8,190 @@
 
 {% block contenido_dinamico %}
 <div class="row">
-    <div class="col-md-12">
-        <div class="card">
-            <div class="card-header">
-                <strong class="card-title">Generar Ficha de Mantenimiento Equipo Informatico</strong>
+    {% if json %}
+    {% for act in json %}
+    <form style="width:90%; margin-left:5%;" action="{% url 'panel:equipo_ficha' act.act_fi_identificador %}"
+          method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-6 pr-1">
+                <div class="form-group">
+                    <label class="labelform">Indentififcacion:</label>
+                    <input class="form-control" placeholder="cta_co_codigo" type="text" name="first_name"
+                           value="{{ act.identificación }}">
+                </div>
             </div>
-            <div class="card-body">
-                <table id="bootstrap-data-table" class="table table-striped table-bordered">
-                    <thead>
-                    <tr>
-                        <th>Ord.</th>
-                        <th>Cuenta</th>
-                        <th>Serie</th>
-                        <th>Detalle</th>
-                        <th>Color</th>
-                        <th>Condicion</th>
-                        <th>Opciones</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% if json %}
-                    {% for act in json %}
-                    <tr role="row" class="odd">
-                        <td class="sorting_1">{{ forloop.counter }}</td>
-                        <td>{{ act.cta_co_codigo }}</td>
-                        <td>{{ act.act_fi_serie }}</td>
-                        <td>{{ act.act_fi_nombre }}</td>
-                        <td>{{ act.act_fi_color}}</td>
-                        <td>{{ act.act_fi_condicion }}</td>
-                        <td>
+            <div class="col-md-6 pl-1">
+                <div class="form-group">
+                    <label class="labelform">Nombres y Apellidos: </label>
+                    <input class="form-control" placeholder="Nombres y Apellidos" type="text" name="first_name"
+                           value="">
+                </div>
+            </div>
 
-                             <form id="myForm" style="width:90%; margin-left:5%;" action="{% url 'panel:equipo_ficha' act.act_fi_identificador %}" method="post">
-                              {% csrf_token %}
-                              <button type="submit" CLASS="btn btn btn-success"><span class="ti-receipt"></span></button>
-                             </form>
-                            <!--<a class="btn btn-danger" href=""></a>-->
-                            <!--<a class="btn btn btn-success" href=""></a>-->
-                        </td>
-                    </tr>
-                    {% endfor %}
-                    {% else %}
-                    <h1>No hay registos para mostrar</h1>
-                    {% endif %}
-                    </tbody>
-                </table>
+        </div>
+        <div class="row">
+            <div class="col-md-6 pr-1">
+                <div class="form-group">
+                    <label class="labelform">Identificador Activo Fijo:</label>
+                    <input class="form-control" placeholder="act_fi_identificador" type="text"
+                           name="act_fi_identificador" value="{{ act.act_fi_identificador }}">
+                </div>
+            </div>
+            <div class="col-md-6 pl-1">
+                <div class="form-group">
+                    <label class="labelform">asig_identificador: </label>
+                    <input class="form-control" placeholder="det_asig_observacion" type="text" name="det_asig_observacion "
+                           value="{{ act.det_asig_observacion  }}">
+                </div>
             </div>
         </div>
-    </div>
 
+        <div class="row">
+            <div class="col-md-6 pr-1">
+                <div class="form-group">
+                    <label class="labelform">det_asig_observacion:</label>
+                    <input class="form-control" placeholder="det_asig_observacion" type="text"
+                           name="det_asig_observacion" value="{{ act.det_asig_observacion }}">
+                </div>
+            </div>
+            <div class="col-md-6 pl-1">
+                <div class="form-group">
+                    <label class="labelform">act_fi_codigo : </label>
+                    <input class="form-control" placeholder="act_fi_codigo" type="text" name="act_fi_codigo"
+                           value="{{ act.act_fi_codigo}}">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 pr-1">
+                <div class="form-group">
+                    <label class="labelform">act_fi_nombre:</label>
+                    <input class="form-control" placeholder="act_fi_nombre" type="text" name="act_fi_nombre"
+                           value="{{ act.act_fi_nombre }}">
+                </div>
+            </div>
+            <div class="col-md-6 pl-1">
+                <div class="form-group">
+                    <label class="labelform">act_fi_tipo: </label>
+                    <input class="form-control" placeholder="act_fi_tipo" type="text" name="act_fi_tipo"
+                           value="{{ act.act_fi_tipo }}">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 pr-1">
+                <div class="form-group">
+                    <label class="labelform">act_fi_nivel:</label>
+                    <input class="form-control" placeholder="act_fi_nivel" type="text" name="act_fi_nivel"
+                           value="{{ act.act_fi_nivel }}">
+                </div>
+            </div>
+            <div class="col-md-6 pl-1">
+                <div class="form-group">
+                    <label class="labelform">act_fi_marca: </label>
+                    <input class="form-control" placeholder="act_fi_marca" type="text" name="act_fi_marca"
+                           value="{{ act.act_fi_marca}}">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 pr-1">
+                <div class="form-group">
+                    <label class="labelform">act_fi_modelo:</label>
+                    <input class="form-control" placeholder="act_fi_modelo" type="text" name="act_fi_modelo"
+                           value="{{ act.act_fi_modelo}}">
+                </div>
+            </div>
+            <div class="col-md-6 pl-1">
+                <div class="form-group">
+                    <label class="labelform">act_fi_serie: </label>
+                    <input class="form-control" placeholder="act_fi_serie" type="text" name="act_fi_serie"
+                           value="{{ act.act_fi_serie }}">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 pr-1">
+                <div class="form-group">
+                    <label class="labelform">act_fi_color:</label>
+                    <input class="form-control" placeholder="act_fi_color" type="text" name="act_fi_color"
+                           value="{{ act.act_fi_color }}">
+                </div>
+            </div>
+            <div class="col-md-6 pl-1">
+                <div class="form-group">
+                    <label class="labelform">act_fi_accesorios: </label>
+                    <input class="form-control" placeholder="act_fi_accesorios" type="text" name="act_fi_accesorios"
+                           value="{{ act.act_fi_accesorios }}">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 pr-1">
+                <div class="form-group">
+                    <label class="labelform">act_fi_valor_compra :</label>
+                    <input class="form-control" placeholder="act_fi_color" type="text" name="act_fi_valor_compra"
+                           value="{{ act.act_fi_valor_compra  }}">
+                </div>
+            </div>
+            <div class="col-md-6 pl-1">
+                <div class="form-group">
+                    <label class="labelform">act_fi_fecha_compra  : </label>
+                    <input class="form-control" placeholder="act_fi_accesorios" type="text" name="act_fi_fecha_compra"
+                           value="{{ act.act_fi_fecha_compra}}">
+                </div>
+            </div>
+        </div>
 
+        <div class="row">
+            <div class="col-md-6 pr-1">
+                <div class="form-group">
+                    <label class="labelform">act_fi_vida_util  :</label>
+                    <input class="form-control" placeholder="act_fi_color" type="text" name="act_fi_vida_util"
+                           value="{{ act.act_fi_vida_util  }}">
+                </div>
+            </div>
+            <div class="col-md-6 pl-1">
+                <div class="form-group">
+                    <label class="labelform">act_fi_estado   : </label>
+                    <input class="form-control" placeholder="act_fi_accesorios" type="text" name="act_fi_estado"
+                           value="{{ act.act_fi_estado }}">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 pr-1">
+                <div class="form-group">
+                    <label class="labelform">act_fi_condicion  :</label>
+                    <input class="form-control" placeholder="act_fi_color" type="text" name="act_fi_condicion"
+                           value="{{ act.act_fi_condicion   }}">
+                </div>
+            </div>
+            <div class="col-md-6 pl-1">
+                <div class="form-group">
+                    <label class="labelform">act_fi_asignado: </label>
+                    <input class="form-control" placeholder="act_fi_accesorios" type="text" name="act_fi_asignado"
+                           value="{{ act.act_fi_asignado}}">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 pr-1">
+                <div class="form-group">
+                    <label class="labelform">act_fi_factura  :</label>
+                    <input class="form-control" placeholder="act_fi_color" type="text" name="act_fi_factura"
+                           value="{{ act.act_fi_factura   }}">
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" CLASS="btn btn btn-success"><span class="ti-receipt"> GENERAR FICHA DE MANTENIMEINTO</span></button>
+    </form>
+    {% endfor %}
+    {% endif %}
 </div>
 {% endblock %}
 {% block adicionales %}
