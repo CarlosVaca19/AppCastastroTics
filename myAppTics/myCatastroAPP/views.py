@@ -81,6 +81,7 @@ def generar_ficha(request, id_equipomantenimiento):
     data = {}
     data['equipo'] = []
     bandera = "NO"
+    id_ficha = 0
     try:
         url = 'http://localhost:8080/sw/webresources/swRecursoAme/identificadorporequipo/?id=' + id_equipomantenimiento  # url del servicio web
         response = urllib.request.urlopen(url)
@@ -112,8 +113,13 @@ def generar_ficha(request, id_equipomantenimiento):
             act_fi_factura=request.POST.get("act_fi_factura")
         )
         ficha.save()
-        return render(request, 'equipoinformatico/fichagenerada.html',
-                      {'titulo': 'Ficha Equipo', 'json': data, 'tamano': tam, 'sms': mensaje})
+        fmant = ficha_mantenimiento.objects.all().filter(act_fi_identificador=id_equipomantenimiento)
+        if len(fmant) > 0:
+            for ficha_nueva in fmant:
+                id_ficha = ficha_nueva.id
+        return redirect('panel:historial_mantenimiento', id_ficha)
+        #return render(request, 'equipoinformatico/fichagenerada.html',
+        #             {'titulo': 'Ficha Equipo', 'json': data, 'tamano': tam, 'sms': mensaje})
     else:
         form = FichaMantenimiento()
         #fmant = ficha_mantenimiento.objects.get(act_fi_identificador=id_equipomantenimiento)
@@ -123,7 +129,7 @@ def generar_ficha(request, id_equipomantenimiento):
             for ficha_nueva in fmant:
                 id_ficha = ficha_nueva.id
                 nombre_ficha = ficha_nueva.act_fi_nombre
-
+        #return redirect('panel:historial_mantenimiento', id_ficha)
         return render(request, 'equipoinformatico/fichamantenimiento.html',
                       {'titulo': 'Ficha Equipo', 'json': data, 'tamano': tam, 'form': form, 'bandera':bandera,
                        'id_ficha':id_ficha})
