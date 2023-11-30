@@ -118,8 +118,7 @@ def generar_ficha(request, id_equipomantenimiento):
             for ficha_nueva in fmant:
                 id_ficha = ficha_nueva.id
         return redirect('panel:historial_mantenimiento', id_ficha)
-        #return render(request, 'equipoinformatico/fichagenerada.html',
-        #             {'titulo': 'Ficha Equipo', 'json': data, 'tamano': tam, 'sms': mensaje})
+
     else:
         form = FichaMantenimiento()
         #fmant = ficha_mantenimiento.objects.get(act_fi_identificador=id_equipomantenimiento)
