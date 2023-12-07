@@ -30,10 +30,10 @@ def login_view(request):
 def index_view(request):
     # inst = ConfiguracionIndex.objects.get(pk=1)
     # noti = noticias_index.objects.all()
-    # orga = organizaciones.objects.all()
-    # productos = presentacion.objects.all()[:5]
+    numero_mantenimiento = historial_mantenimiento.objects.all()
+    numero_equipos = ficha_mantenimiento.objects.all()
     return render(request, 'paneladministracion/index.html',
-                  {})
+                  {'ne': len(numero_equipos) , 'nm': len(numero_mantenimiento), 'json':numero_mantenimiento})
 
 
 def index_funcionarios(request):
