@@ -99,9 +99,9 @@
 
 <div class="infoGeneral" style="text-align: center;">
 
-    <b>RED DE INTEGRACIÓN ECONÓMICA</b>
+    <b>UNIDAD DE TECNOLOGIAS DE LA INFORMACION Y COMUNICIACIONN</b>
     <br>
-    <b>WIÑARI CRECIENDO "REDPROSEWOR"</b>
+    <b>HISTORIAL DE MANTENIMIENTOS REALIZADOS EQUIPOS INFORMATICOS</b>
 </div>
 <hr>
 
@@ -109,47 +109,25 @@
     <br>
     <table>
         <thead>
+         <tr>
+                        <th>Ord.</th>
+                        <th>Tipo Mantenimiento</th>
+                        <th>Observaciones</th>
+                        <th>Fecha</th>
+                        <th>Funcionario</th>
+
+                    </tr>
         </thead>
         <tbody>
         {% for item in items %}
-        <tr>
-            {% if forloop.counter|divisibleby:2 == True  %}
 
-             <td>
-                <b>{{item.nombre_presentacion}}</b>
-                <br>
-                <b>{{item.cont_neto}} {{item.id_unidad_medida.unidad_medida}}
-                </b>
-                <br>
-                <b> $ {{item.precio}} </b>
-                <br>
-                <b>{{item.id_producto.id_organizacion.nombre_organizacion}} &nbsp;</b>
-                <br>
-
-            </td>
-            <td class="infoCenter"><img src="media/{{item.logo}}" width="300px">
-            <hr style="color:red;">
-            </td>
-            {% endif %}
-
-
-            {% if forloop.counter|divisibleby:2 == False  %}
-            <td class="infoCenter"><img src="media/{{item.logo}}" width="300px">
-            <hr style="color:rgb(247, 107,28);">
-            </td>
-            <td>
-                <b>{{item.nombre_presentacion}}</b>
-                <br>
-                <b>{{item.cont_neto}} {{item.id_unidad_medida.unidad_medida}}
-                &nbsp;</b>
-                <br>
-                <b> $ {{item.precio}}</b>
-                <br>
-                <b>{{item.id_producto.id_organizacion.nombre_organizacion}} &nbsp;</b>
-                <br>
-            </td>
-            {% endif %}
-        </tr>
+        <tr role="row" class="odd">
+                        <td class="sorting_1">{{ forloop.counter }}</td>
+                        <td>{{ item.tipo_mantenimiento }}</td>
+                        <td>{{ item.observaciones }}</td>
+                        <td>{{ item.fecha_mantenimiento }}</td>
+                        <td>{{ item.funcionario_encargado}}</td>
+                    </tr>
         {% endfor %}
         </tbody>
     </table>
@@ -166,16 +144,16 @@
 <br>
 <br>
 <div>
-    Orellana, Construye su Desarrollo<br>
-    prefectura@gporellana.gob.ec<br>
+    Gobierno Autonomo Descentralizado del Canton Archidona<br>
+    tics@archidona.gob.ec<br>
     (06) 3 731 760 | (06) 3 731 761<br>
     Av. 9 de Octubre y Cesar Andi <br>
-    Orellana - Ecuador<br>
+    Archidona - Ecuador<br>
 </div>
 
 
 <div id="footer_content">
-    (Wiñari) - pagina
+    (TICS) - pagina
     <pdf:pagenumber> de
         <pdf:pagecount>
 </div>
