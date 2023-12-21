@@ -13,7 +13,7 @@
                 <br>
                 <a CLASS="btn btn btn-success" href="{% url 'panel:nuevo_mantenimiento' ficha.id %}" title="Mantenimiento">
                     <span class="ti-receipt"> Nuevo </span></a>
-                 <a CLASS="btn btn btn-success" href="" title="Mantenimiento">
+                 <a CLASS="btn btn btn-success" href="{% url 'panel:ReporteMantenimiento' ficha.id %}" title="Mantenimiento">
                     <span class="ti-receipt"> Pdf </span></a>
 
             </div>

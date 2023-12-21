@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{tittle}} {{codigo}}</title>
+    <style type="text/css" media="screen, print">
+     @page {
+        size: a4 portrait;
+        @frame header_frame {           /* Static Frame */
+            -pdf-frame-content: header_content;
+            left: 50pt; width: 512pt; top: 10pt; height: 40pt;
+            font-size: 100em;
+        }
+        @frame content_frame {          /* Content Frame */
+            left: 50pt; width: 512pt; top: 60pt; height: 632pt;
+
+
+        }
+        @frame footer_frame {           /* Another static Frame */
+            -pdf-frame-content: footer_content;
+            left: 50pt; width: 512pt; top: 772pt; height: 20pt;
+        }
+
+    }
+
+    .header_table{
+
+    font-weight:bold;
+    color: black;
+     background-color: #F00;
+    }
+
+
+    .indice{
+     text-align: center;
+     font-weight:bold;
+     color: Red;
+     width:10%;
+    }
+    .nivel{
+     width:15%;
+    }
+    .materias{
+      width:50%;
+    }
+    .infoCenter{
+    text-align: center;
+    }
+
+    th, td{
+            padding: 5px 2px;
+    }
+    th{
+        font-size: 20px;
+        font-weight: bold;
+
+    }
+    td{
+
+    }
+     .firma1{
+     float:left;
+     width: 30%;
+     outline: green solid thin
+     }
+     p.linea { text-align:  left; }
+     .prueba{
+        height: 10px;
+        width: 50%;
+      border-color: red;
+      color: red;
+     }
+
+     .watermark {
+    opacity: 0.1;
+    color: BLACK;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    }
+
+
+
+
+    </style>
+</head>
+<body STYLE="font-size:11pt;">
+
+<div id="header_content" style="">
+    <img src="media/LOGOWIÑARI.png" width="200px">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span> <b style="color:rgb(247, 107,28);"> {{tittle}}</b></span>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <img src="media/logo.png" width="200px">
+</div>
+
+
+<div class="infoGeneral" style="text-align: center;">
+
+    <b>RED DE INTEGRACIÓN ECONÓMICA DE PRODUCTOS Y SERVICIOS</b>
+    <br>
+    <b>WIÑARI CRECIENDO "REDPROSEWOR"</b>
+</div>
+<hr>
+
+<div style="">
+    <br>
+    <table>
+        <thead>
+        </thead>
+        <tbody>
+        {% for item in items %}
+        <tr>
+            {% if forloop.counter|divisibleby:2 == True  %}
+
+             <td>
+                <b>{{item.nombre_presentacion}}</b>
+                <br>
+                <b>{{item.cont_neto}} {{item.id_unidad_medida.unidad_medida}}
+                </b>
+                <br>
+                <b> $ {{item.precio}} </b>
+                <br>
+                <b>{{item.id_producto.id_organizacion.nombre_organizacion}} &nbsp;</b>
+                <br>
+
+            </td>
+            <td class="infoCenter"><img src="media/{{item.logo}}" width="300px">
+            <hr style="color:red;">
+            </td>
+            {% endif %}
+
+
+            {% if forloop.counter|divisibleby:2 == False  %}
+            <td class="infoCenter"><img src="media/{{item.logo}}" width="300px">
+            <hr style="color:rgb(247, 107,28);">
+            </td>
+            <td>
+                <b>{{item.nombre_presentacion}}</b>
+                <br>
+                <b>{{item.cont_neto}} {{item.id_unidad_medida.unidad_medida}}
+                &nbsp;</b>
+                <br>
+                <b> $ {{item.precio}}</b>
+                <br>
+                <b>{{item.id_producto.id_organizacion.nombre_organizacion}} &nbsp;</b>
+                <br>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <br>
+</div>
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div>
+    Orellana, Construye su Desarrollo<br>
+    prefectura@gporellana.gob.ec<br>
+    (06) 3 731 760 | (06) 3 731 761<br>
+    Av. 9 de Octubre y Cesar Andi <br>
+    Orellana - Ecuador<br>
+</div>
+
+
+<div id="footer_content">
+    (Wiñari) - pagina
+    <pdf:pagenumber> de
+        <pdf:pagecount>
+</div>
+
+</body>
+</html>
