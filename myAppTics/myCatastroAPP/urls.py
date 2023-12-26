@@ -1,7 +1,7 @@
 from django.urls import path
 
 from .views import login_view, index_view, index_funcionarios, index_asignaciones, generar_ficha, \
-    index_historial_mantenimiento, generarmantenimiento, mantenimientoPDF_view
+    index_historial_mantenimiento, generarmantenimiento, mantenimientoPDF_view, mantenimientoPDFINDIVIDUAL_view
 
 urlpatterns = [
     #path('', index_principal.as_view(), name='index1'),
@@ -16,5 +16,6 @@ urlpatterns = [
 
 
     path('mantenimiento/pdf/<int:pk>/', mantenimientoPDF_view.as_view(), name='ReporteMantenimiento'),
+    path('mantenimientoidv/pdf/<int:pk>/', mantenimientoPDFINDIVIDUAL_view.as_view(), name='ReporteMantenimientoidv'),
 
 ]

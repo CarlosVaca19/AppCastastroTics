@@ -40,7 +40,7 @@
                         <td>{{ mt.fecha_mantenimiento }}</td>
                         <td>{{ mt.funcionario_encargado}}</td>
                         <td>
-                            <a CLASS="btn btn btn-success" href="" title=""><span class="ti-receipt">pdf</span></a>
+                            <a CLASS="btn btn btn-success" href="{% url 'panel:ReporteMantenimientoidv' mt.id %}" title=""><span class="ti-receipt">pdf</span></a>
                             <!--<a class="btn btn-danger" href=""></a>-->
                             <!--<a class="btn btn btn-success" href=""></a>-->
                         </td>
