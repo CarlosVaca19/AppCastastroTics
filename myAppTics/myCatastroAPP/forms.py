@@ -1,7 +1,7 @@
 
 from django import forms
 
-from .models import ficha_mantenimiento
+from .models import ficha_mantenimiento, historial_mantenimiento
 
 
 class FichaMantenimiento(forms.ModelForm):
@@ -68,4 +68,30 @@ class FichaMantenimiento(forms.ModelForm):
             'act_fi_condicion': forms.TextInput(attrs={'class': 'form-control', 'readonly': 'readonly'}),
             'act_fi_asignado': forms.TextInput(attrs={'class': 'form-control', 'readonly': 'readonly'}),
             'act_fi_factura': forms.TextInput(attrs={'class': 'form-control', 'readonly': 'readonly'}),
+        }
+
+class historial_mantenimientoFORM(forms.ModelForm):
+
+    class Meta:
+        model = historial_mantenimiento
+        fields = [
+            'id_ficha_mantenimiento',
+            'tipo_mantenimiento',
+            'observaciones',
+            'fecha_mantenimiento',
+            'funcionario_encargado',
+        ]
+        labels = {
+            'id_ficha_mantenimiento':'id_ficha_mantenimiento',
+            'tipo_mantenimiento':'tipo_mantenimiento',
+            'observaciones':'observaciones',
+            'fecha_mantenimiento':'fecha_mantenimiento',
+            'funcionario_encargado':'funcionario_encargado',
+        }
+        widgets = {
+            'id_ficha_mantenimiento': forms.TextInput(attrs={'class': 'form-control', 'readonly': 'readonly'}),
+            'tipo_mantenimiento': forms.Select(attrs={'class': 'form-control', 'readonly': 'readonly'}),
+            'observaciones': forms.TextInput(attrs={'class': 'form-control'}),
+            'fecha_mantenimiento': forms.TextInput(attrs={'class': 'form-control'}),
+            'funcionario_encargado': forms.TextInput(attrs={'class': 'form-control'}),
         }

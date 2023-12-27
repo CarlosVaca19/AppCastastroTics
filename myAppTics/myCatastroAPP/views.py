@@ -11,7 +11,7 @@ from django.template.loader import get_template
 from django.views import View
 from xhtml2pdf import pisa
 
-from .forms import FichaMantenimiento
+from .forms import FichaMantenimiento, historial_mantenimientoFORM
 from .models import ficha_mantenimiento, funcionarios_gadma, historial_mantenimiento
 from django.conf import settings
 
@@ -164,7 +164,7 @@ def generarmantenimiento(request, id_ficha_mantenimiento):
         ficha.save()
         return redirect('panel:historial_mantenimiento', id_ficha_mantenimiento)
     else:
-        form = historial_mantenimiento()
+        form = historial_mantenimientoFORM()
         contexto = {'message': 'Guardado con Exito',
                 'form': form,
                 'ficha': inst_mantenimiento,
