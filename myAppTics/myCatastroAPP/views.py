@@ -160,7 +160,10 @@ def generarmantenimiento(request, id_ficha_mantenimiento):
             tipo_mantenimiento= request.POST.get("tipo_mantenimiento"),
             observaciones=request.POST.get("observaciones"),
             fecha_mantenimiento = request.POST.get("fecha_mantenimiento"),
-            funcionario_encargado = request.POST.get("funcionario_encargado")
+            funcionario_encargado = request.POST.get("funcionario_encargado"),
+            piezas_reemplazadas = request.POST.get("piezas_reemplazadas"),
+            horas_trabajo = request.POST.get("horas_trabajo"),
+            recomendaciones = request.POST.get("recomendaciones")
         )
         ficha.save()
         return redirect('panel:historial_mantenimiento', id_ficha_mantenimiento)

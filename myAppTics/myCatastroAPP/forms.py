@@ -80,6 +80,9 @@ class historial_mantenimientoFORM(forms.ModelForm):
             'observaciones',
             'fecha_mantenimiento',
             'funcionario_encargado',
+            'piezas_reemplazadas',
+            'horas_trabajo',
+            'recomendaciones',
         ]
         labels = {
             'id_ficha_mantenimiento':'id_ficha_mantenimiento',
@@ -87,6 +90,9 @@ class historial_mantenimientoFORM(forms.ModelForm):
             'observaciones':'observaciones',
             'fecha_mantenimiento':'fecha_mantenimiento',
             'funcionario_encargado':'funcionario_encargado',
+            'piezas_reemplazadas':'piezas_reemplazadas',
+            'horas_trabajo':'horas_trabajo',
+            'recomendaciones':'recomendaciones',
         }
         widgets = {
             'id_ficha_mantenimiento': forms.TextInput(attrs={'class': 'form-control', 'readonly': 'readonly'}),
@@ -94,4 +100,9 @@ class historial_mantenimientoFORM(forms.ModelForm):
             'observaciones': forms.TextInput(attrs={'class': 'form-control'}),
             'fecha_mantenimiento': forms.TextInput(attrs={'class': 'form-control'}),
             'funcionario_encargado': forms.TextInput(attrs={'class': 'form-control'}),
+            'piezas_reemplazadas': forms.TextInput(attrs={'class': 'form-control'}),
+            'horas_trabajo': forms.Select(attrs={'class': 'form-control', 'readonly': 'readonly'}),
+            'recomendaciones': forms.TextInput(attrs={'class': 'form-control'}),
+
+
         }

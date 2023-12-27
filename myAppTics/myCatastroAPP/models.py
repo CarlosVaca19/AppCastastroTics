@@ -39,8 +39,18 @@ class historial_mantenimiento(models.Model):
         ('Correctivo', 'Correctivo'),
         ('Dardebaja', 'Dardebaja'),
     )
+
+    opciones2 = (
+        ('0 a 30 min', '0 a 30 min'),
+        ('31 a 60 min', '31 a 60 min'),
+        ('mas de 1 hora', 'mas de 1 hora'),
+    )
+
     id_ficha_mantenimiento = models.ForeignKey('ficha_mantenimiento', on_delete=models.CASCADE, verbose_name="ficha_mantenimiento")
     tipo_mantenimiento = models.CharField(verbose_name="Tipo Mantenimiento", choices=opciones,max_length=20,null=True)
     observaciones = models.CharField(verbose_name="observaciones", null=True, max_length=300)
     fecha_mantenimiento = models.CharField(verbose_name="Fecha Solicitud",null=True)
     funcionario_encargado = models.CharField(verbose_name="Funcionario", null=True, max_length=70)
+    piezas_reemplazadas = models.TextField(verbose_name="piezas_reemplazadas", null=True, max_length=300)
+    horas_trabajo = models.CharField(verbose_name="Horas de Trabajo", choices=opciones2, max_length=40, null=True)
+    recomendaciones = models.TextField(verbose_name="Recomendaciones", null=True, max_length=300)
