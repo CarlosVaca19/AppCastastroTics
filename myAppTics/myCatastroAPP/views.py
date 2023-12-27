@@ -4,6 +4,7 @@ import os
 
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.models import User
 from django.contrib.staticfiles import finders
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, redirect
@@ -165,10 +166,12 @@ def generarmantenimiento(request, id_ficha_mantenimiento):
         return redirect('panel:historial_mantenimiento', id_ficha_mantenimiento)
     else:
         form = historial_mantenimientoFORM()
+        user = User.objects.get(username=request.user)
         contexto = {'message': 'Guardado con Exito',
                 'form': form,
                 'ficha': inst_mantenimiento,
-                'titulo': "Nuevo Mantenimiento"
+                'titulo': "Nuevo Mantenimiento",
+                'usuario': user
                 }
     return render(request, 'equipoinformatico/nuevomantenimiento.html', contexto)
 
