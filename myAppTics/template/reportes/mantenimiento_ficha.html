@@ -123,7 +123,6 @@
         </tr>
         </thead>
         <tbody>
-
         <tr>
             <td>{{ items.id_ficha_mantenimiento.act_fi_nombre }}</td>
             <td>{{ items.id_ficha_mantenimiento.act_fi_marca }}</td>
@@ -136,19 +135,20 @@
     </table>
     <br>
 
- 2. HISTORIAL DE MANTENIMIENTO
+ 2. FICHA DE MANTENIMIENTO
+
+    2.1. INFORMACION BASICA DE MANTENIMEINTO
     <table border="1">
         <thead>
         <tr>
             <th>Ord.</th>
             <th>Tipo</th>
-            <th>Observaciones</th>
+            <th>Descripcion</th>
             <th>Fecha</th>
             <th>Tecnico</th>
         </tr>
         </thead>
         <tbody>
-
         <tr>
             <td width="30">1.- </td>
             <td>{{ items.tipo_mantenimiento }}</td>
@@ -160,6 +160,37 @@
         </tbody>
     </table>
     <br>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>Piezas Reemplazadas</th>
+            <th>Horas Trabajadas</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>{{ items.piezas_reemplazadas }}</td>
+            <td>{{ items.horas_trabajo }}</td>
+        </tr>
+
+        </tbody>
+    </table>
+    <br>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>Recomendaciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>{{ items.recomendaciones }}</td>
+        </tr>
+
+        </tbody>
+    </table>
+    <br>
+
 </div>
 
 
