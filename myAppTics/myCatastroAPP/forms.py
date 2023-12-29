@@ -3,10 +3,12 @@ from django import forms
 
 from .models import ficha_mantenimiento, historial_mantenimiento
 
-
+# Definir el formulario para la ficha de mantenimiento
 class FichaMantenimiento(forms.ModelForm):
     class Meta:
+        # Especificar el modelo asociado al formulario
         model = ficha_mantenimiento
+        # Especificar los campos que se mostrarán en el formulario
         fields = [
             'det_asig_numero',
             'act_fi_identificador',
@@ -28,6 +30,8 @@ class FichaMantenimiento(forms.ModelForm):
             'act_fi_asignado',
             'act_fi_factura',
         ]
+
+        # Etiquetas personalizadas para los campos
         labels = {
             'det_asig_numero':'det_asig_numero',
             'act_fi_identificador':'act_fi_identificador',
@@ -48,6 +52,8 @@ class FichaMantenimiento(forms.ModelForm):
             'act_fi_asignado':'act_fi_asignado',
             'act_fi_factura':'act_fi_factura',
         }
+
+        # Configuración de widgets para la presentación del formulario
         widgets = {
             'det_asig_numero': forms.TextInput(attrs={'class': 'form-control', 'readonly': 'readonly'}),
             'act_fi_identificador': forms.TextInput(attrs={'class': 'form-control', 'readonly': 'readonly'}),
@@ -70,10 +76,13 @@ class FichaMantenimiento(forms.ModelForm):
             'act_fi_factura': forms.TextInput(attrs={'class': 'form-control', 'readonly': 'readonly'}),
         }
 
+# Definir el formulario para el historial de mantenimiento
 class historial_mantenimientoFORM(forms.ModelForm):
 
     class Meta:
+        # Especificar el modelo asociado al formulario
         model = historial_mantenimiento
+        # Especificar los campos que se mostrarán en el formulario
         fields = [
             'id_ficha_mantenimiento',
             'tipo_mantenimiento',
@@ -84,6 +93,8 @@ class historial_mantenimientoFORM(forms.ModelForm):
             'horas_trabajo',
             'recomendaciones',
         ]
+
+        # Etiquetas personalizadas para los campos
         labels = {
             'id_ficha_mantenimiento':'id_ficha_mantenimiento',
             'tipo_mantenimiento':'tipo_mantenimiento',
@@ -94,6 +105,8 @@ class historial_mantenimientoFORM(forms.ModelForm):
             'horas_trabajo':'horas_trabajo',
             'recomendaciones':'recomendaciones',
         }
+
+        # Configuración de widgets para la presentación del formulario
         widgets = {
             'id_ficha_mantenimiento': forms.TextInput(attrs={'class': 'form-control', 'readonly': 'readonly'}),
             'tipo_mantenimiento': forms.Select(attrs={'class': 'form-control', 'readonly': 'readonly'}),

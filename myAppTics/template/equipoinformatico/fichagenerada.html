@@ -12,9 +12,9 @@
                 <strong class="card-title">Historial de Mantenimiento: {{ficha.act_fi_nombre}}</strong>
                 <br>
                 <a CLASS="btn btn btn-success" href="{% url 'panel:nuevo_mantenimiento' ficha.id %}" title="Mantenimiento">
-                    <span class="ti-receipt"> Nuevo </span></a>
+                    <span class="ti-receipt"> Nuevo Mantenimiento </span></a>
                  <a CLASS="btn btn btn-success" href="{% url 'panel:ReporteMantenimiento' ficha.id %}" title="Mantenimiento">
-                    <span class="ti-receipt"> Pdf </span></a>
+                    <span class="ti-receipt"> Generar reporte </span></a>
 
             </div>
             <div class="card-body">
@@ -23,7 +23,7 @@
                     <tr>
                         <th>Ord.</th>
                         <th>Tipo Mantenimiento</th>
-                        <th>Observaciones</th>
+                        <th>Descripción</th>
                         <th>Fecha</th>
                         <th>Funcionario</th>
                         <th>Opciones</th>

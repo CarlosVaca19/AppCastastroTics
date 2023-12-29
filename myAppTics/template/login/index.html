@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 {% load static %}
 <html lang="en">
 <head>
@@ -10,9 +10,7 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-
     <link rel="stylesheet" href="{% static 'login/css/style.css' %}">
-
 </head>
 <body>
 <section class="ftco-section">
@@ -48,9 +46,8 @@
                               method="post">
                             {% csrf_token %}
                             <div class="form-group mt-3">
-                                <input type="text" class="form-control" name="username" placeholder="juan.larrea"
+                                <input type="text" class="form-control" name="username" placeholder="nombre.apellido"
                                        value="" required>
-
                             </div>
                             <div class="form-group">
                                 <input type="password" class="form-control" name="password" placeholder="*********"
@@ -59,20 +56,17 @@
                                       class="fa fa-fw fa-eye field-icon toggle-password"></span>
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign In
-                                </button>
+                                <button type="submit" class="form-control btn btn-primary rounded submit px-3">Ingresar</button>
                             </div>
                             <div class="form-group d-md-flex">
                                 <div class="w-50 text-left">
-                                    <label class="checkbox-wrap checkbox-primary mb-0">Remember Me
+                                    <label class="checkbox-wrap checkbox-primary mb-0">Recordar usuario
                                         <input type="checkbox" checked>
                                         <span class="checkmark"></span>
                                     </label>
                                 </div>
-
                             </div>
                         </form>
-
                     </div>
                 </div>
             </div>
@@ -80,14 +74,12 @@
     </div>
 </section>
 
-<script src="js/jquery.min.js"></script>
-<script src="js/popper.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/main.js"></script>
-
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/popper.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>
-
 
 <script>
     $(function() {
