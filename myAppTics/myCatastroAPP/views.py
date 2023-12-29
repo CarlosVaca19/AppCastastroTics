@@ -249,7 +249,7 @@ class mantenimientoPDF_view(View):
         context = {'tittle': 'MANTENIMIENTO DE EQUIPOS INFORMATICOS ', 'FICHA': '01',
                    'items': historial_mantenimiento1,
                    'codigo': 100,
-                   'icon': '{}{}'.format(settings.MEDIA_URL, 'logoarchidona.png'),
+                   'icon': '{}{}'.format(settings.MEDIA_URL, 'logoarchidona.jpg'),
                    'estudios': 100,
                    'date': fecha
                    #'usuario': user
@@ -315,7 +315,7 @@ class mantenimientoPDFINDIVIDUAL_view(View):
         context = {'tittle': 'MANTENIMIENTO DE EQUIPOS INFORMATICOS ', 'FICHA': '01',
                    'items': historial_mantenimiento1,
                    'codigo': 100,
-                   'icon': '{}{}'.format(settings.MEDIA_URL, 'logoarchidona.png'),
+                   'icon': '{}{}'.format(settings.MEDIA_URL, 'logoarchidona.jpg'),
                    'estudios': 100,
                    'date': fecha
                    #'usuario': user
