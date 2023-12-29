@@ -111,6 +111,32 @@
 
 <div style="">
     <br>
+    1. INFORMACION DEL EQUIPO
+    <table border="1">
+        <thead>
+        <tr>
+            <th>Detalle</th>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>act_fi_serie</th>
+            <th>act_fi_color</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr>
+            <td>{{ items.id_ficha_mantenimiento.act_fi_nombre }}</td>
+            <td>{{ items.id_ficha_mantenimiento.act_fi_marca }}</td>
+            <td>{{ items.id_ficha_mantenimiento.act_fi_modelo }}</td>
+            <td>{{ items.id_ficha_mantenimiento.act_fi_serie}}</td>
+            <td>{{ items.id_ficha_mantenimiento.act_fi_color}}</td>
+        </tr>
+
+        </tbody>
+    </table>
+    <br>
+
+ 2. HISTORIAL DE MANTENIMIENTO
     <table border="1">
         <thead>
         <tr>
