@@ -3,6 +3,7 @@ import json, urllib.request
 import os
 
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.staticfiles import finders
@@ -43,6 +44,8 @@ def login_view(request):
     return render(request, 'login/index.html', {'form': form})
 
 # Definir la función de vista para la página de inicio del panel de administración
+
+@login_required(login_url='/')
 def index_view(request):
     # Obtener todos los registros de historial_mantenimiento y ficha_mantenimiento
     numero_mantenimiento = historial_mantenimiento.objects.all()
@@ -52,6 +55,7 @@ def index_view(request):
                   {'ne': len(numero_equipos) , 'nm': len(numero_mantenimiento), 'json':numero_mantenimiento})
 
 # Definir la función de vista para la página de funcionarios
+@login_required(login_url='/')
 def index_funcionarios(request):
     # Inicializar un diccionario para almacenar datos
     data = {}
@@ -71,6 +75,7 @@ def index_funcionarios(request):
                   {'titulo': 'Funcionarios del Gadma', 'json': data, 'tamano': tam})
 
 # Definir la función de vista para la página de asignaciones de un funcionario
+@login_required(login_url='/')
 def index_asignaciones(request, id_funcionario):
     # Inicializar un diccionario para almacenar datos
     data = {}
@@ -100,6 +105,7 @@ def actualizar_funcionarios_sw(request):
                   {'titulo': 'FUNCIONARIOS', 'json': funcionarios, 'tamano': len(funcionarios)})
 
 # Definir la función de vista para generar una ficha de mantenimiento
+@login_required(login_url='/')
 def generar_ficha(request, id_equipomantenimiento):
     data = {}
     data['equipo'] = []
@@ -161,6 +167,7 @@ def generar_ficha(request, id_equipomantenimiento):
                        'id_ficha':id_ficha})
 
 # Definir la función de vista para mostrar el historial de mantenimiento de una ficha específica
+@login_required(login_url='/')
 def index_historial_mantenimiento(request, id_ficha_mantenimiento):
     # Obtener el historial de mantenimiento asociado a la ficha específica
     historial_mantenimiento1 = historial_mantenimiento.objects.all().filter(id_ficha_mantenimiento=id_ficha_mantenimiento)
@@ -172,6 +179,7 @@ def index_historial_mantenimiento(request, id_ficha_mantenimiento):
                   {'titulo': 'Hisorial de Mantenimiento', 'json': historial_mantenimiento1, 'ficha':inst_mantenimiento})
 
 # Definir la función de vista para generar un nuevo registro de mantenimiento
+@login_required(login_url='/')
 def generarmantenimiento(request, id_ficha_mantenimiento):
     # Obtener la ficha de mantenimiento correspondiente al ID proporcionado
     inst_mantenimiento = ficha_mantenimiento.objects.get(pk=id_ficha_mantenimiento)
@@ -209,6 +217,7 @@ def generarmantenimiento(request, id_ficha_mantenimiento):
     return render(request, 'equipoinformatico/nuevomantenimiento.html', contexto)
 
 # Definir la clase de la vista para generar un PDF de mantenimiento
+
 class mantenimientoPDF_view(View):
     # Función de devolución de llamada para manejar los enlaces en el PDF
     def link_callback(self, uri, rel):
@@ -275,6 +284,7 @@ class mantenimientoPDF_view(View):
         return response
 
 # Definir la clase de la vista para generar un PDF de mantenimiento individual
+
 class mantenimientoPDFINDIVIDUAL_view(View):
     # Función de devolución de llamada para manejar los enlaces en el PDF
     def link_callback(self, uri, rel):
