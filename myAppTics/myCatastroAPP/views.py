@@ -265,7 +265,7 @@ class mantenimientoPDF_view(View):
                    }
         # Configurar la respuesta HTTP para el PDF
         response = HttpResponse(content_type='application/pdf')
-        response['Content-Disposition'] = 'attachment; filename=' + reporte_name + ".pdf"
+        response['Content-Disposition'] = 'inline; filename=' + reporte_name + ".pdf"
         # Obtener la plantilla HTML y renderizarla con los datos
         template = get_template(template_path)
         html = template.render(context)
